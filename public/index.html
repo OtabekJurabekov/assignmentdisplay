@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assignment Editor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">
+                    <span class="ai-icon">🤖</span>
+                    AI Assignment
+                </h1>
+                <button class="add-header-btn" id="addHeaderBtn">
+                    <span class="plus-icon">+</span>
+                    Add Header
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search headers..." class="search-input">
+                </div>
+                
+                <div class="headers-list" id="headersList">
+                    <!-- Headers will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button class="collapse-btn" id="collapseBtn">
+                    <span class="collapse-icon">←</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h2 class="current-header-title" id="currentHeaderTitle">Select a header to start editing</h2>
+                    <div class="editor-tools">
+                        <button class="tool-btn" id="addImageBtn" title="Add Image">
+                            <span class="icon">🖼️</span>
+                        </button>
+                        <button class="tool-btn" id="saveBtn" title="Save">
+                            <span class="icon">💾</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <div class="content-editor" id="contentEditor" contenteditable="true" placeholder="Start typing or paste your content here...">
+                        <p class="welcome-message">Welcome to AI Assignment Editor!</p>
+                        <p class="welcome-message">Select a header from the sidebar to start editing, or add a new header to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Header Modal -->
+    <div class="modal-overlay" id="headerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Header</h3>
+                <button class="modal-close" id="closeHeaderModal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="form-group">
+                    <label for="headerTitle">Header Title</label>
+                    <input type="text" id="headerTitle" class="form-input" placeholder="Enter header title">
+                </div>
+                <div class="form-group">
+                    <label for="headerPage">Page Number</label>
+                    <input type="number" id="headerPage" class="form-input" placeholder="Enter page number" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="headerContent">Initial Content (Optional)</label>
+                    <textarea id="headerContent" class="form-textarea" placeholder="Enter initial content" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelHeaderBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveHeaderBtn">Add Header</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Upload Modal -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Image</h3>
+                <button class="modal-close" id="closeImageModal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-placeholder">
+                        <span class="upload-icon">📁</span>
+                        <p>Click to select image or drag and drop</p>
+                        <p class="upload-hint">Supports: JPG, PNG, GIF, WebP (Max 10MB)</p>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                </div>
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <img id="previewImg" src="" alt="Preview">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelImageBtn">Cancel</button>
+                <button class="btn btn-primary" id="insertImageBtn" disabled>Insert Image</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
